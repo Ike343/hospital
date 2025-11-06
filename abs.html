@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chiraa Government Hospital</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+
+
+
+ 
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #e3f2fd 60%, #bbdefb 100%);
+      min-height: 100vh;
+    }
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.tab {
+  flex: 1;
+  padding: 10px 0;
+  cursor: pointer;
+  background: #e9ecef;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #2d3e50;
+  transition: background 0.2s;
+}
+.tab.active {
+  background: #2d3e50;
+  color: #fff;
+  font-weight: bold;
+}
+#auth form {
+  display: none;
+  flex-direction: column;
+}
+#auth form.active {
+  display: flex;
+}
+#auth label {
+  margin-bottom: 6px;
+  color: #555;
+  font-size: 14px;
+}
+#auth input {
+  padding: 10px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+}
+#auth button[type="submit"] {
+  padding: 12px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#auth button[type="submit"]:hover {
+  background: #0056b3;
+}
+
+    header {
+      background: linear-gradient(90deg, #0c0c0c 60%, #0b0b0b 100%);
+      color: #fff;
+      padding: 2rem 1rem 1.5rem 1rem;
+      text-align: center;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      box-shadow: 0 8px 32px 0 rgba(25,118,210,0.25);
+      position: relative;
+    }
+    .header-logo {
+      position: absolute;
+      top: 18px;
+      right: 32px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 4px 16px #1976d240;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 3px solid #020202;
+    }
+    .header-logo img { width: 90%; height: 90%; object-fit: contain; }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin: 0.5rem 0 0.3rem 0;
+      text-shadow: 0 4px 24px #1976d2cc, 0 1px 0 #fff;
+    }
+    nav {
+      background: #040404;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+      padding: 0.7rem 0;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px #1976d220;
+    }
+    nav button {
+      background: linear-gradient(90deg, #141414 60%, #050505 100%);
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 0.7rem 2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #1976d220;
+      transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+      letter-spacing: 1px;
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    nav button img {
+      width: 1.3em;
+      height: 1.3em;
+      vertical-align: middle;
+      filter: drop-shadow(0 1px 2px #1976d240);
+    }
+    nav button:hover, nav button:focus {
+      background: linear-gradient(90deg, #1565c0 60%, #64b5f6 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 4px 16px #1976d240;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px #1976d220;
+    }
+    .hidden { display: none; }
+    section {
+      margin-bottom: 2rem;
+      background: #f7fbff;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px #1976d220;
+      padding: 1.5rem 1rem;
+      transition: box-shadow 0.2s, background 0.2s;
+      animation: fadeInSection 0.7s;
+    }
+    @keyframes fadeInSection {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    section h2 {
+      color: #1976d2;
+      text-align: center;
+      margin-bottom: 1.2rem;
+      letter-spacing: 1px;
+      font-size: 2rem;
+      font-weight: 700;
+      text-shadow: 0 2px 8px #1976d220;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6em;
+    }
+    /* Doctors */
+    .doctor-list {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .doctor-card {
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      padding: 1.2rem 1rem 1.5rem 1rem;
+      width: 220px;
+      background: #fff;
+      box-shadow: 0 2px 8px #1976d220;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInSection 0.7s;
+    }
+    .doctor-card:hover {
+      transform: translateY(-7px) scale(1.04);
+      box-shadow: 0 8px 24px #1976d240;
+      border: 2px solid #90caf9;
+    }
+    .doctor-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid #90caf9;
+      margin-bottom: 0.7rem;
+      object-fit: cover;
+      box-shadow: 0 2px 8px #1976d220;
+      background: #fff;
+      transition: border 0.2s;
+    }
+    .doctor-card:hover img {
+      border: 4px solid #1976d2;
+    }
+    .doctor-card h4 {
+      margin: 0.2rem 0 0.1rem 0;
+      font-size: 1.2rem;
+      color: #1976d2;
+    }
+    .doctor-card p {
+      margin: 0;
+      color: #444;
+      font-size: 1.05rem;
+    }
+    /* Departments */
+     .departments-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .department-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px #1976d220;
+      padding: 1.2rem 1rem;
+      width: 180px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 2px solid #e3f2fd;
+      position: relative;
+      cursor: pointer;
+    }
+    .department-card:hover {
+      transform: scale(1.06) translateY(-6px);
+      box-shadow: 0 8px 24px #1976d240;
+      border: 2px solid #1976d2;
+    }
+    .department-card img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 0.7em;
+      border-radius: 50%;
+      background: #e3f2fd;
+      object-fit: contain;
+      box-shadow: 0 1px 6px #1976d220;
+    }
+    .department-card h4 {
+      margin: 0.2em 0 0.1em 0;
+      color: #1976d2;
+      font-size: 1.1em;
+    }
+    /* Modal styles for department portal */
+    #deptPortalModal {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(25, 118, 210, 0.13);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s;
+    }
+    #deptPortalModal.hidden { display: none; }
+    .dept-portal-content {
+      background: linear-gradient(120deg, #f7fbff 60%, #e3f2fd 100%);
+      border-radius: 28px;
+      max-width: 430px;
+      width: 97vw;
+      padding: 2.5em 1.5em 1.5em 1.5em;
+      box-shadow: 0 12px 48px #1976d240;
+      position: relative;
+      animation: fadeInSection 0.5s;
+      border: 2.5px solid #1976d2;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 420px;
+    }
+    .dept-portal-content h3 {
+      color: #1976d2;
+      margin-top: 0;
+      margin-bottom: 0.7em;
+      text-align: center;
+      font-size: 1.6em;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #1976d220;
+    }
+    .dept-portal-content .close-btn {
+      position: absolute;
+      top: 1em;
+      right: 1em;
+      background: #e53935;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 2em;
+      height: 2em;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #e5393520;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    .dept-portal-content .close-btn:hover {
+      background: #b71c1c;
+    }
+    .dept-portal-content .back-btn {
+      position: absolute;
+      top: 1em;
+      left: 1em;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 2em;
+      height: 2em;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #1976d220;
+      transition: background 0.2s;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dept-portal-content .back-btn:hover {
+      background: #1565c0;
+    }
+    .dept-portal-content .dept-desc {
+      margin-bottom: 1em;
+      color: #444;
+      text-align: center;
+      font-size: 1.08em;
+      font-weight: 500;
+    }
+    .dept-portal-content .chat-box {
+      height: 180px;
+      margin-bottom: 0.5em;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 14px;
+      border: 1.5px solid #90caf9;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7em;
+      box-shadow: 0 2px 8px #1976d220;
+    }
+    .dept-portal-content .consultation-input-row {
+      margin-top: 0.5em;
+      justify-content: center;
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+    }
+    .dept-portal-content .chat-input {
+      flex: 1;
+      padding: 0.7em 1em;
+      border-radius: 12px;
+      border: 1.5px solid #90caf9;
+      font-size: 1em;
+      background: #f7fbff;
+      transition: border 0.2s;
+      outline: none;
+    }
+    .dept-portal-content .chat-input:focus {
+      border: 2px solid #1976d2;
+      background: #fff;
+    }
+    .dept-portal-content .chat-send {
+      padding: 0.7em 1.6em;
+      border-radius: 22px;
+      background: linear-gradient(90deg, #1976d2 60%, #90caf9 100%);
+      font-weight: bold;
+      font-size: 1.1em;
+      box-shadow: 0 2px 8px #1976d220;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .dept-portal-content .chat-send img {
+      width: 1.2em;
+      height: 1.2em;
+      vertical-align: middle;
+      margin-right: 0.3em;
+      filter: drop-shadow(0 1px 2px #1976d240);
+      transition: transform 0.2s;
+    }
+    .dept-portal-content .chat-send:hover img {
+      transform: scale(1.15) rotate(-8deg);
+    }
+    .dept-portal-content .chat-send:active {
+      background: linear-gradient(90deg, #0d47a1 60%, #42a5f5 100%);
+      transform: scale(0.97);
+    }
+    .dept-portal-content .chat-send:focus, .dept-portal-content .chat-send:hover {
+      background: linear-gradient(90deg, #1565c0 60%, #64b5f6 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px #1976d240;
+      filter: brightness(1.08);
+    }
+    .chat-message {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.7em;
+      animation: fadeInSection 0.5s;
+    }
+    .chat-message.user {
+      flex-direction: row-reverse;
+    }
+    .chat-bubble {
+      background: #e3f2fd;
+      color: #1976d2;
+      padding: 0.7em 1.1em;
+      border-radius: 16px;
+      max-width: 70vw;
+      box-shadow: 0 1px 6px #1976d220;
+      font-size: 1.05em;
+      word-break: break-word;
+    }
+    .chat-message.ai .chat-bubble {
+      background: #1976d2;
+      color: #fff;
+    }
+    .chat-message img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #90caf9;
+      background: #fff;
+      object-fit: cover;
+    }
+    .typing-indicator {
+      display: inline-block;
+      width: 60px;
+      height: 1em;
+      background: linear-gradient(90deg, #fff 30%, #90caf9 100%);
+      border-radius: 1em;
+      animation: typing 1s infinite alternate;
+    }
+   
+    /* Appointment */
+    #appointmentForm {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2rem;
+      justify-content: center;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+      background: #e3f2fd;
+      padding: 1.5rem 1rem;
+      border-radius: 18px;
+      box-shadow: 0 2px 8px #1976d220;
+    }
+    #appointmentForm label {
+      display: flex;
+      flex-direction: column;
+      font-weight: 500;
+      color: #1976d2;
+      font-size: 1.05rem;
+      min-width: 180px;
+    }
+    #appointmentForm select,
+    #appointmentForm input[type="date"],
+    #appointmentForm input[type="time"] {
+      margin-top: 0.5rem;
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      border: 1.5px solid #90caf9;
+      font-size: 1rem;
+      background: #f7fbff;
+      transition: border 0.2s;
+    }
+    #appointmentForm select:focus,
+    #appointmentForm input[type="date"]:focus,
+    #appointmentForm input[type="time"]:focus {
+      border: 2px solid #1976d2;
+      background: #fff;
+    }
+    .btn {
+      padding: 0.8rem 2.5rem;
+      border-radius: 22px;
+      background: linear-gradient(90deg, #1976d2 60%, #90caf9 100%);
+      font-weight: bold;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 8px #1976d220;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+      border: 2px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .btn img {
+      width: 1.2em;
+      height: 1.2em;
+      vertical-align: middle;
+      margin-right: 0.3em;
+      filter: drop-shadow(0 1px 2px #1976d240);
+      transition: transform 0.2s;
+    }
+    .btn:hover img {
+      transform: scale(1.15) rotate(-8deg);
+    }
+    .btn:active {
+      background: linear-gradient(90deg, #0d47a1 60%, #42a5f5 100%);
+      transform: scale(0.97);
+    }
+    .btn:focus, .btn:hover {
+      background: linear-gradient(90deg, #1565c0 60%, #64b5f6 100%);
+      color: #fff;
+      border: 2px solid #fff;
+      box-shadow: 0 4px 18px #1976d240;
+      filter: brightness(1.08);
+    }
+    .btn[disabled] {
+      background: #bbdefb;
+      color: #1976d2;
+      cursor: not-allowed;
+      border: 2px solid #bbdefb;
+      filter: grayscale(0.3);
+    }
+    /* List Styles */
+    ul, .reminder-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul li, .reminder-list li {
+      background: #e3f2fd;
+      margin: 0.5rem 0;
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      color: #1976d2;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 8px #1976d220;
+      transition: background 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInSection 0.5s;
+    }
+    ul li:hover, .reminder-list li:hover {
+      background: #bbdefb;
+      transform: scale(1.03);
+    }
+    .cancel-appt-btn, .reminder-list button, #pharmacyList button {
+      background: linear-gradient(90deg, #e53935 60%, #ff7043 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.4rem 1.1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-left: 1rem;
+      box-shadow: 0 1px 6px #e5393520;
+      transition: background 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+    }
+    .cancel-appt-btn img, .reminder-list button img, #pharmacyList button img {
+      width: 1em;
+      height: 1em;
+      margin-right: 0.2em;
+    }
+    .cancel-appt-btn:hover, .reminder-list button:hover, #pharmacyList button:hover {
+      background: linear-gradient(90deg, #b71c1c 60%, #e57373 100%);
+      box-shadow: 0 2px 12px #e5393540;
+    }
+    /* Table for Wards */
+    table.wards-table {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background: #e3f2fd;
+      border-radius: 12px;
+      border-collapse: collapse;
+      overflow: hidden;
+      box-shadow: 0 2px 8px #1976d220;
+    }
+    table.wards-table th, table.wards-table td {
+      padding: 0.7rem;
+      text-align: center;
+    }
+    table.wards-table th {
+      background: #1976d2;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+    table.wards-table tr:nth-child(even) {
+      background: #f7fbff;
+    }
+    /* Chat styles */
+    .chat-box {
+      height: 260px;
+      overflow-y: auto;
+      background: #fff;
+      border: 1.5px solid #90caf9;
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .chat-message {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.7em;
+      animation: fadeInSection 0.5s;
+    }
+    .chat-message.user {
+      flex-direction: row-reverse;
+    }
+    .chat-bubble {
+      background: #e3f2fd;
+      color: #1976d2;
+      padding: 0.7em 1.1em;
+      border-radius: 16px;
+      max-width: 70vw;
+      box-shadow: 0 1px 6px #1976d220;
+      font-size: 1.05em;
+      word-break: break-word;
+    }
+    .chat-message.ai .chat-bubble {
+      background: #1976d2;
+      color: #fff;
+    }
+    .chat-message img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #90caf9;
+      background: #fff;
+      object-fit: cover;
+    }
+    .typing-indicator {
+      display: inline-block;
+      width: 60px;
+      height: 1em;
+      background: linear-gradient(90deg, #fff 30%, #90caf9 100%);
+      border-radius: 1em;
+      animation: typing 1s infinite alternate;
+    }
+    @keyframes typing {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .container { padding: 0.5rem; }
+      form { flex-direction: column; align-items: stretch; }
+      .doctor-list, .departments-list { flex-direction: column; align-items: center; }
+      nav { flex-wrap: wrap; gap: 0.5rem; }
+      section h2 { font-size: 1.3rem; }
+    }
+ 
+
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #e3f2fd 60%, #bbdefb 100%);
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(90deg, #1976d2 60%, #90caf9 100%);
+      color: #fff;
+      padding: 2rem 1rem 1.5rem 1rem;
+      text-align: center;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      box-shadow: 0 8px 32px 0 rgba(25,118,210,0.25);
+      position: relative;
+    }
+    .header-logo {
+      position: absolute;
+      top: 18px;
+      right: 32px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 4px 16px #1976d240;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 3px solid #1976d2;
+    }
+    .header-logo img { width: 90%; height: 90%; object-fit: contain; }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin: 0.5rem 0 0.3rem 0;
+      text-shadow: 0 4px 24px #1976d2cc, 0 1px 0 #fff;
+    }
+    nav {
+      background: #1976d2;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+      padding: 0.7rem 0;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px #1976d220;
+    }
+    nav button {
+      background: linear-gradient(90deg, #1976d2 60%, #90caf9 100%);
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 0.7rem 2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #1976d220;
+      transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+      letter-spacing: 1px;
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    nav button img {
+      width: 1.3em;
+      height: 1.3em;
+      vertical-align: middle;
+      filter: drop-shadow(0 1px 2px #1976d240);
+    }
+    nav button:hover, nav button:focus {
+      background: linear-gradient(90deg, #1565c0 60%, #64b5f6 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 4px 16px #1976d240;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px #1976d220;
+    }
+    .hidden { display: none; }
+    section {
+      margin-bottom: 2rem;
+      background: #f7fbff;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px #1976d220;
+      padding: 1.5rem 1rem;
+      transition: box-shadow 0.2s, background 0.2s;
+      animation: fadeInSection 0.7s;
+    }
+    @keyframes fadeInSection {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    section h2 {
+      color: #1976d2;
+      text-align: center;
+      margin-bottom: 1.2rem;
+      letter-spacing: 1px;
+      font-size: 2rem;
+      font-weight: 700;
+      text-shadow: 0 2px 8px #1976d220;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6em;
+    }
+    .doctor-list {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .doctor-card {
+      border: 1px solid #ddd;
+      border-radius: 16px;
+      padding: 1.2rem 1rem 1.5rem 1rem;
+      width: 220px;
+      background: #fff;
+      box-shadow: 0 2px 8px #1976d220;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInSection 0.7s;
+    }
+    .doctor-card:hover {
+      transform: translateY(-7px) scale(1.04);
+      box-shadow: 0 8px 24px #1976d240;
+      border: 2px solid #90caf9;
+    }
+    .doctor-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid #90caf9;
+      margin-bottom: 0.7rem;
+      object-fit: cover;
+      box-shadow: 0 2px 8px #1976d220;
+      background: #fff;
+      transition: border 0.2s;
+    }
+    .doctor-card:hover img {
+      border: 4px solid #1976d2;
+    }
+    .doctor-card h4 {
+      margin: 0.2rem 0 0.1rem 0;
+      font-size: 1.2rem;
+      color: #1976d2;
+    }
+    .doctor-card p {
+      margin: 0;
+      color: #444;
+      font-size: 1.05rem;
+    }
+    .departments-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .department-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px #1976d220;
+      padding: 1.2rem 1rem;
+      width: 180px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 2px solid #e3f2fd;
+      position: relative;
+      cursor: pointer;
+    }
+    .department-card:hover {
+      transform: scale(1.06) translateY(-6px);
+      box-shadow: 0 8px 24px #1976d240;
+      border: 2px solid #1976d2;
+    }
+    .department-card img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 0.7em;
+      border-radius: 50%;
+      background: #e3f2fd;
+      object-fit: contain;
+      box-shadow: 0 1px 6px #1976d220;
+    }
+    .department-card h4 {
+      margin: 0.2em 0 0.1em 0;
+      color: #1976d2;
+      font-size: 1.1em;
+    }
+    /* Modal styles for department portal */
+    #deptPortalModal {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(25, 118, 210, 0.13);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s;
+    }
+    #deptPortalModal.hidden { display: none; }
+    .dept-portal-content {
+      background: linear-gradient(120deg, #f7fbff 60%, #e3f2fd 100%);
+      border-radius: 28px;
+      max-width: 430px;
+      width: 97vw;
+      padding: 2.5em 1.5em 1.5em 1.5em;
+      box-shadow: 0 12px 48px #1976d240;
+      position: relative;
+      animation: fadeInSection 0.5s;
+      border: 2.5px solid #1976d2;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      min-height: 420px;
+    }
+    .dept-portal-content h3 {
+      color: #1976d2;
+      margin-top: 0;
+      margin-bottom: 0.7em;
+      text-align: center;
+      font-size: 1.6em;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #1976d220;
+    }
+    .dept-portal-content .close-btn {
+      position: absolute;
+      top: 1em;
+      right: 1em;
+      background: #e53935;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 2em;
+      height: 2em;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #e5393520;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    .dept-portal-content .close-btn:hover {
+      background: #b71c1c;
+    }
+    .dept-portal-content .back-btn {
+      position: absolute;
+      top: 1em;
+      left: 1em;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 2em;
+      height: 2em;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #1976d220;
+      transition: background 0.2s;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dept-portal-content .back-btn:hover {
+      background: #1565c0;
+    }
+    .dept-portal-content .dept-desc {
+      margin-bottom: 1em;
+      color: #444;
+      text-align: center;
+      font-size: 1.08em;
+      font-weight: 500;
+    }
+    .dept-portal-content .chat-box {
+      height: 180px;
+      margin-bottom: 0.5em;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 14px;
+      border: 1.5px solid #90caf9;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7em;
+      box-shadow: 0 2px 8px #1976d220;
+    }
+    .dept-portal-content .consultation-input-row {
+      margin-top: 0.5em;
+      justify-content: center;
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+    }
+    .dept-portal-content .chat-input {
+      flex: 1;
+      padding: 0.7em 1em;
+      border-radius: 12px;
+      border: 1.5px solid #90caf9;
+      font-size: 1em;
+      background: #f7fbff;
+      transition: border 0.2s;
+      outline: none;
+    }
+    .dept-portal-content .chat-input:focus {
+      border: 2px solid #1976d2;
+      background: #fff;
+    }
+    .dept-portal-content .chat-send {
+      padding: 0.7em 1.6em;
+      border-radius: 22px;
+      background: linear-gradient(90deg, #1976d2 60%, #90caf9 100%);
+      font-weight: bold;
+      font-size: 1.1em;
+      box-shadow: 0 2px 8px #1976d220;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+      outline: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .dept-portal-content .chat-send img {
+      width: 1.2em;
+      height: 1.2em;
+      vertical-align: middle;
+      margin-right: 0.3em;
+      filter: drop-shadow(0 1px 2px #1976d240);
+      transition: transform 0.2s;
+    }
+    .dept-portal-content .chat-send:hover img {
+      transform: scale(1.15) rotate(-8deg);
+    }
+    .dept-portal-content .chat-send:active {
+      background: linear-gradient(90deg, #0d47a1 60%, #42a5f5 100%);
+      transform: scale(0.97);
+    }
+    .dept-portal-content .chat-send:focus, .dept-portal-content .chat-send:hover {
+      background: linear-gradient(90deg, #1565c0 60%, #64b5f6 100%);
+      color: #fff;
+      box-shadow: 0 4px 18px #1976d240;
+      filter: brightness(1.08);
+    }
+    .chat-message {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.7em;
+      animation: fadeInSection 0.5s;
+    }
+    .chat-message.user {
+      flex-direction: row-reverse;
+    }
+    .chat-bubble {
+      background: #e3f2fd;
+      color: #1976d2;
+      padding: 0.7em 1.1em;
+      border-radius: 16px;
+      max-width: 70vw;
+      box-shadow: 0 1px 6px #1976d220;
+      font-size: 1.05em;
+      word-break: break-word;
+    }
+    .chat-message.ai .chat-bubble {
+      background: #1976d2;
+      color: #fff;
+    }
+    .chat-message img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #90caf9;
+      background: #fff;
+      object-fit: cover;
+    }
+    .typing-indicator {
+      display: inline-block;
+      width: 60px;
+      height: 1em;
+      background: linear-gradient(90deg, #fff 30%, #90caf9 100%);
+      border-radius: 1em;
+      animation: typing 1s infinite alternate;
+    }
+    @keyframes typing {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    @media (max-width: 700px) {
+      .container { padding: 0.5rem; }
+      form { flex-direction: column; align-items: stretch; }
+      .doctor-list, .departments-list { flex-direction: column; align-items: center; }
+      nav { flex-wrap: wrap; gap: 0.5rem; }
+      section h2 { font-size: 1.3rem; }
+      .dept-portal-content { min-height: 350px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>
+  UCC Online Hospital Portal
+    </h1>
+    <div class="header-logo">
+      <img src="ucc l;ogo.jpg" alt="Hospital Logo" />
+    </div>
+  </header>
+  <nav>
+    <button onclick="showSection('doctors')"><img src="49ea808e-ce3e-4485-b471-0c0a742773b2 (1).JPG">Doctors</button>
+      <button onclick="showSection('departments')"><img src="49ea808e-ce3e-4485-b471-0c0a742773b2 (1).JPG">Department</button>
+    <button onclick="showSection('appointment')"><img src="IMG_4021.JPG">Book Appointment</button>
+    <button onclick="showSection('consultation')"><img src="IMG_4022.JPG">Consultation</button>
+    <button onclick="showSection('reminders')"><img src="IMG_4024.JPG">Reminders</button>
+    <button onclick="showSection('pharmacy')"><img src="IMG_4025.JPG">Pharmacy</button>
+    <button onclick="showSection('lab')"><img src="IMG_4033.JPG">Lab Tests</button>
+    <button onclick="showSection('wards')"><img src="IMG_4035.JPG">Wards</button>
+    <button onclick="showSection('billing')"><img src="IMG_4029.JPG">Billing</button>
+    <button onclick="showSection('aboutus')"><img src="IMG_4030.JPG">About Us</button>
+    <button onclick="showSection('contactus')"><img src="IMG_4027.JPG">Contact Us</button>
+  
+   <button onclick="showSection('telehealth')"><img src="IMG_4037.JPG">Telehealth</button>
+  <button onclick="showSection('monitoring')"><img src="IMG_4038.JPG">Remote Monitoring</button>
+  <button onclick="showSection('ehr')"><img src="IMG_4019.JPG">EHR</button>
+  <button onclick="showSection('analytics')"><img src="IMG_4018.JPG">Analytics</button>
+  </nav>
+
+
+  <div class="container">
+    <section id="auth" class="hidden">
+  <h2>Hospital Portal Login / Signup</h2>
+  <div class="tabs">
+    <button class="tab active" id="loginTab">Login</button>
+    <button class="tab" id="signupTab">Sign Up</button>
+  </div>
+  <form id="loginForm" class="active">
+    <label for="loginEmail">Email</label>
+    <input type="email" id="loginEmail" name="loginEmail" required>
+    <label for="loginPassword">Password</label>
+    <input type="password" id="loginPassword" name="loginPassword" required>
+    <button type="submit">Login</button>
+  </form>
+  <form id="signupForm">
+    <label for="signupName">Full Name</label>
+    <input type="text" id="signupName" name="signupName" required>
+    <label for="signupEmail">Email</label>
+    <input type="email" id="signupEmail" name="signupEmail" required>
+    <label for="signupPassword">Password</label>
+    <input type="password" id="signupPassword" name="signupPassword" required>
+    <button type="submit">Sign Up</button>
+  </form>
+</section>
+    <!-- Doctors Section -->
+    <section id="doctors">
+      <h2>OUR DOCTORS</h2>
+      <div class="doctor-list" id="doctorList"></div>
+    </section>
+    <!-- Departments Section -->
+    <section id="departments" class="hidden">
+      <h2><img src="49ea808e-ce3e-4485-b471-0c0a742773b2 (1).JPG" style =" width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 4px solid #90caf9;
+      margin-bottom: 0.7rem;
+      object-fit: cover;
+      box-shadow: 0 2px 8px #1976d220;
+      background: #4f4949;
+      transition: border 0.2s; ">Departments</h2>
+      <div class="departments-list" id="departmentsList">
+        <div class="department-card" data-dept="Cardiology">
+          <img src="IMG_4026.JPG" alt="Cardiology">
+          <h4>Cardiology</h4>
+          <p>Heart & blood vessels</p>
+           <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the <b>cardiology</b> to chat with AI
+        
+        </p>
+        </div>
+        <div class="department-card" data-dept="Dermatology">
+          <img src="IMG_4028.JPG" alt="Dermatology">
+          <h4>Dermatology</h4>
+          <p>Skin & hair</p>
+             <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the  <b>Dermatology</b> to chat with AI
+        
+        </p>
+        </div>
+        <div class="department-card" data-dept="Pediatrics">
+          <img src="IMG_4029.JPG" alt="Pediatrics">
+          <h4>Pediatrics</h4>
+          <p>Children's health</p>
+             <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the  <b>Pediatrics</b> to chat with AI
+        
+        </p>
+        </div>
+        <div class="department-card" data-dept="General Medicine">
+          <img src="IMG_4030.JPG" alt="General Medicine">
+          <h4>General Medicine</h4>
+          <p>Primary care</p>
+             <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the  <b>General Medicine</b> to chat with AI
+        
+        </p>
+        </div>
+        <div class="department-card" data-dept="Orthopedics">
+          <img src="IMG_4031.JPG" alt="Orthopedics">
+          <h4>Orthopedics</h4>
+          <p>Bones & joints</p>
+             <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the  <b>Orthopedics</b> to chat with AI
+        
+        </p>
+        </div>
+        <div class="department-card" data-dept="Radiology">
+          <img src="IMG_4032.JPG" alt="Radiology">
+          <h4>Radiology</h4>
+          <p>Imaging & scans</p>
+             <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the  <b>Radiology</b> to chat with AI
+        
+        </p>
+        </div>
+        <div class="department-card" data-dept="Emergency">
+          <img src="IMG_4033.JPG" alt="Emergency">
+          <h4>Emergency</h4>
+          <p>24/7 urgent care</p>
+             <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the  <b>Emergency</b> to chat with AI
+        
+        </p>
+        </div>
+        <div class="department-card" data-dept="Gynecology">
+          <img src="IMG_4034.JPG" alt="Gynecology">
+          <h4>Gynecology</h4>
+          <p>Women's health</p>
+             <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the  <b>Gynecology</b> to chat with AI
+        
+        </p>
+        </div>
+        <div class="department-card" data-dept="ENT">
+          <img src="IMG_4035.JPG" alt="ENT">
+          <h4>ENT</h4>
+          <p>Ear, Nose, Throat</p>
+             <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the <b>ENT</b> to chat with AI
+        
+        </p>
+        </div>
+        <div class="department-card" data-dept="Neurology">
+          <img src="IMG_4036.JPG" alt="Neurology">
+          <h4>Neurology</h4>
+          <p>Brain & nerves</p>
+             <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the  <b>Neurology</b> to chat with AI
+        
+        </p>
+        </div>
+        <div class="department-card" data-dept="Oncology">
+          <img src="IMG_4037.JPG" alt="Oncology">
+          <h4>Oncology</h4>
+          <p>Cancer care</p>
+             <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the  <b>Oncology</b> to chat with AI
+        
+        </p>
+        </div>
+        <div class="department-card" data-dept="Psychiatry">
+          <img src="IMG_4038.JPG" alt="Psychiatry">
+          <h4>Psychiatry</h4>
+          <p>Mental health</p>
+             <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          click on the contact    <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;"> <b>+233595200692</b></a>  to chat with the Doctor or click on the  <b>Psychiatry</b> to chat with AI
+        
+        </p>
+        </div>
+      </div>
+    </section>
+    <!-- Department Portal Modal -->
+    <div id="deptPortalModal" class="hidden">
+      <div class="dept-portal-content">
+        <button class="back-btn" onclick="closeDeptPortal()" title="Back">&#8592;</button>
+        <button class="close-btn" onclick="closeDeptPortal()" title="Close">&times;</button>
+        <h3 id="deptPortalTitle"></h3>
+        <div class="dept-desc" id="deptPortalDesc"></div>
+        <div class="chat-box" id="deptChatBox"></div>
+        <div class="consultation-input-row">
+          <input type="text" id="deptChatInput" class="chat-input" placeholder="Describe your symptoms..." autocomplete="off" />
+          <button class="chat-send" id="deptChatSendBtn" onclick="sendDeptMessage()">
+            <img src="IMG_4018.JPG">Send
+          </button>
+        </div>
+      </div>
+    </div>
+    <section id="appointment" class="hidden">
+      <h2><img src="IMG_4020.JPG">Book Appointment</h2>
+      <form id="appointmentForm">
+        <label>
+          Select Doctor:
+          <select id="appointmentDoctor"></select>
+        </label>
+        <label>
+          Date:
+          <input type="date" id="appointmentDate" required>
+        </label>
+        <label>
+          Time:
+          <input type="time" id="appointmentTime" required>
+        </label>
+        <button type="submit" class="btn"><img src="IMG_4020.JPG">Book</button>
+      </form>
+      <div id="appointmentMsg"></div>
+      <div id="myAppointments" style="margin-top:1.5rem;">
+        <h3>My Appointments</h3>
+        <ul id="appointmentList"></ul>
+      </div>
+    </section>
+    <!-- Consultation Section -->
+    <section id="consultation" class="hidden">
+      <h2><img src="49ea808e-ce3e-4485-b471-0c0a742773b2 (1).JPG" style =" width: 500px; height: 500px;
+      border-radius: 50%;
+      border: 4px solid #90caf9;
+      margin-bottom: 0.7rem;
+      object-fit: cover;
+      box-shadow: 0 2px 8px #1976d220;
+      background: #fff;
+      transition: border 0.2s; ">AI Consultation</h2>
+      <div class="chat-box" id="chatBox"></div>
+      <div class="consultation-input-row" style="display:flex;gap:0.7rem;align-items:center;margin-top:0.5rem;">
+        <input type="text" id="chatInput" class="chat-input" placeholder="Describe your symptoms..." autocomplete="off" />
+        <button class="chat-send btn" id="chatSendBtn" onclick="sendMessage()">
+          <img src="IMG_4028.JPG">Send
+        </button>
+      </div>
+    </section>
+    <!-- Reminders Section -->
+    <section id="reminders" class="hidden">
+      <h2><img src="IMG_4024.JPG">Reminders</h2>
+      <form id="reminderForm">
+        <input type="text" id="reminderText" placeholder="Reminder (e.g., Take medicine at 8am)" required>
+        <input type="datetime-local" id="reminderTime" required>
+        <button type="submit" class="btn"><img src="IMG_4028.JPG">Add Reminder</button>
+      </form>
+      <ul class="reminder-list" id="reminderList"></ul>
+    </section>
+    <!-- Pharmacy Section -->
+    <section id="pharmacy" class="hidden">
+      <h2><img src="IMG_4021.JPG">Pharmacy</h2>
+      <form id="pharmacyForm">
+        <input type="text" id="pharmacySearch" placeholder="Search for medicines..." required>
+        <button type="submit" class="btn"><img src="IMG_4036.JPG">Search</button>
+      </form>
+      <ul id="pharmacyList" style="margin-top:1rem;"></ul>
+    </section>
+    <!-- Lab Tests Section -->
+    <section id="lab" class="hidden">
+      <h2><img src="IMG_4030.JPG">Lab Tests</h2>
+      <form id="labForm">
+        <select id="labTestSelect">
+          <option value="Blood Test">Blood Test</option>
+          <option value="X-Ray">X-Ray</option>
+          <option value="MRI">MRI</option>
+          <option value="COVID-19 Test">COVID-19 Test</option>
+          <option value="Urine Test">Urine Test</option>
+          <option value="ECG">ECG</option>
+        </select>
+        <input type="date" id="labDate" required>
+        <button type="submit" class="btn"><img src="IMG_4022.JPG">Book Test</button>
+      </form>
+      <div id="labMsg"></div>
+      <ul id="labList" style="margin-top:1rem;"></ul>
+    </section>
+    <!-- Wards Section -->
+    <section id="wards" class="hidden">
+      <h2><img src="IMG_4020.JPG">Wards & Rooms</h2>
+      <table class="wards-table">
+        <tr>
+          <th>Ward</th>
+          <th>Type</th>
+          <th>Beds Available</th>
+        </tr>
+        <tr><td>General</td><td>Shared</td><td id="wardGeneral">12</td></tr>
+        <tr><td>Private</td><td>Single</td><td id="wardPrivate">4</td></tr>
+        <tr><td>ICU</td><td>Critical</td><td id="wardICU">2</td></tr>
+        <tr><td>Pediatric</td><td>Shared</td><td id="wardPediatric">3</td></tr>
+        <tr><td>Maternity</td><td>Single</td><td id="wardMaternity">1</td></tr>
+      </table>
+      <div style="text-align:center;margin-top:1.2rem;">
+        <button class="btn" onclick="alert('Please contact the hospital reception to book a bed.')">
+          <img src="IMG_4029.JPG">Book a Bed
+        </button>
+      </div>
+    </section>
+    <!-- Billing Section -->
+    <section id="billing" class="hidden">
+      <h2><img src="IMG_4030.JPG">Billing & Payments</h2>
+      <form id="billingForm">
+        <input type="text" id="billingName" placeholder="Patient Name" required>
+        <input type="number" id="billingAmount" placeholder="Amount (₦)" required>
+        <select id="billingMethod">
+          <option value="Cash">Cash</option>
+          <option value="Card">Card</option>
+          <option value="Transfer">Bank Transfer</option>
+        </select>
+        <button type="submit" class="btn"><img src="IMG_4024.JPG">Pay</button>
+      </form>
+      <div id="billingMsg" style="text-align:center;margin-top:1rem;"></div>
+      <ul id="billingList" style="margin-top:1rem;"></ul>
+    </section>
+    <!-- About Us Section -->
+    <section id="aboutus" class="hidden">
+      <h2><img src="IMG_4023.JPG">About Us</h2>
+      <div style="display:flex;align-items:center;justify-content:center;gap:2em;flex-wrap:wrap;">
+        <img src="IMG_4023.JPG" alt="About" style="width:180px;max-width:40vw;">
+        <div>
+          <p style="text-align:left;max-width:400px;font-size:1.1rem;">
+            Virtual Hospital is a modern healthcare platform dedicated to providing accessible, quality healthcare services online.<br>
+            Our mission is to connect patients with certified doctors, offer AI-powered consultations, and help you manage your health from the comfort of your home.
+          </p>
+          <ul style="max-width:400px;font-size:1.05rem;">
+            <li>✔️ Certified and experienced doctors</li>
+            <li>✔️ Secure and confidential appointments</li>
+            <li>✔️ AI-powered instant health advice</li>
+            <li>✔️ Easy reminders for your medications</li>
+            <li>✔️ 24/7 access to your health records</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Us Section -->
+   <!-- ...existing code... -->
+    <!-- Contact Us Section -->
+    <section id="contactus" class="hidden">
+      <h2><img src="IMG_4022.JPG">Contact Us</h2>
+      <form id="contactForm" style="max-width:400px;margin:0 auto;background:#e3f2fd;padding:1.5em 1em;border-radius:16px;box-shadow:0 2px 12px #1976d220;">
+        <input type="text" id="contactName" placeholder="Your Name" required style="margin-bottom:1em;padding:0.7em 1em;border-radius:10px;border:1.5px solid #90caf9;font-size:1em;">
+        <input type="email" id="contactEmail" placeholder="Your Email" required style="margin-bottom:1em;padding:0.7em 1em;border-radius:10px;border:1.5px solid #90caf9;font-size:1em;">
+        <textarea id="contactMsg" placeholder="Your Message" required style="margin-bottom:1em;padding:0.7em 1em;border-radius:10px;border:1.5px solid #90caf9;font-size:1em;min-height:90px;resize:vertical;"></textarea>
+        <button type="submit" class="btn" style="width:100%;justify-content:center;"><img src="https://cdn-icons-png.flaticon.com/512/992/992651.png">Send Message</button>
+      </form>
+      <div id="contactStatus" style="text-align:center;margin-top:1rem;"></div>
+      <div style="text-align:center;margin-top:2em;">
+        <img src="IMG_4034.JPG" alt="Contact" style="width:120px;max-width:30vw;">
+        <p style="margin-top:1em;font-size:1.1em;color:#1976d2;">
+          Email: <a href="mailto:onlinehospital@gmail.com" style="color:#1976d2;text-decoration:underline;">onlinehospital@gmail.com</a><br>
+          Phone: <a href="tel:+233595200692" style="color:#1976d2;text-decoration:underline;">+233595200692</a>
+        </p>
+      </div>
+    </section>
+<!-- ...existing code... -->
+   
+ <section id="telehealth" class="hidden">
+    <h2><img src="IMG_4037.JPG">Telehealth Video Consultation</h2>
+    <div id="videoContainer" style="display:flex;flex-direction:column;align-items:center;gap:1em;">
+      <video id="localVideo" autoplay muted playsinline style="width:320px;height:240px;background:#222;border-radius:12px;"></video>
+      <video id="remoteVideo" autoplay playsinline style="width:320px;height:240px;background:#222;border-radius:12px;"></video>
+      <div>
+        <button class="btn" onclick="startVideoCall()">Start Call</button>
+        <button class="btn" onclick="endVideoCall()">End Call</button>
+      </div>
+      <div id="videoStatus" style="margin-top:1em;color:#1976d2;"></div>
+      <small style="color:#888;">(Simulated video call. Real calls require server integration.)</small>
+    </div>
+  </section>
+
+
+  <!-- Remote Monitoring Section -->
+  <section id="monitoring" class="hidden">
+    <h2><img src="IMG_4038.JPG">Remote Patient Monitoring</h2>
+    <form id="vitalForm" style="display:flex;gap:1em;flex-wrap:wrap;align-items:center;">
+      <input type="number" id="vitalHeart" placeholder="Heart Rate (bpm)" min="30" max="200" required>
+      <input type="number" id="vitalBP" placeholder="Blood Pressure (mmHg)" min="60" max="200" required>
+      <input type="number" id="vitalTemp" placeholder="Temperature (°C)" min="34" max="43" required>
+      <button type="submit" class="btn"><img src="IMG_4019.JPG">Add Reading</button>
+    </form>
+    <canvas id="vitalChart" width="600" height="250" style="margin-top:2em;background:#e3f2fd;border-radius:12px;"></canvas>
+    <ul id="vitalList" style="margin-top:1em;"></ul>
+  </section>
+
+  <!-- EHR Section -->
+  <section id="ehr" class="hidden">
+    <h2><img src="IMG_4019.JPG">Electronic Health Records (EHR)</h2>
+    <form id="ehrForm" style="display:flex;gap:1em;flex-wrap:wrap;align-items:center;">
+      <input type="text" id="ehrName" placeholder="Patient Name" required>
+      <input type="number" id="ehrAge" placeholder="Age" min="0" max="120" required>
+      <input type="text" id="ehrDiagnosis" placeholder="Diagnosis" required>
+      <input type="text" id="ehrTreatment" placeholder="Treatment" required>
+      <button type="submit" class="btn"><img src="IMG_4018.JPG">Save Record</button>
+    </form>
+    <table id="ehrTable" style="width:100%;margin-top:1em;background:#e3f2fd;border-radius:12px;">
+      <thead>
+        <tr>
+          <th>Name</th><th>Age</th><th>Diagnosis</th><th>Treatment</th><th>Delete</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- Analytics Section -->
+  <section id="analytics" class="hidden">
+    <h2><img src="IMG_4018.JPG">Analytics Dashboard</h2>
+    <div style="display:flex;gap:2em;flex-wrap:wrap;">
+      <div style="background:#e3f2fd;padding:1em 2em;border-radius:12px;">
+        <h3 style="color:#1976d2;">Total Patients</h3>
+        <div id="analyticsPatients" style="font-size:2em;font-weight:bold;">0</div>
+      </div>
+      <div style="background:#e3f2fd;padding:1em 2em;border-radius:12px;">
+        <h3 style="color:#1976d2;">Appointments</h3>
+        <div id="analyticsAppointments" style="font-size:2em;font-weight:bold;">0</div>
+      </div>
+      <div style="background:#e3f2fd;padding:1em 2em;border-radius:12px;">
+        <h3 style="color:#1976d2;">Avg. Heart Rate</h3>
+        <div id="analyticsHeart" style="font-size:2em;font-weight:bold;">-</div>
+      </div>
+    </div>
+    <canvas id="analyticsChart" width="600" height="250" style="margin-top:2em;background:#fff;border-radius:12px;"></canvas>
+  </section>
+  <!-- ...existing code... -->
+
+
+
+
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+   // ...existing code...
+
+const doctors = [
+  { name: "Dr. Gloria Twumasiwaa", specialty: "Cardiologist", img: "49ea808e-ce3e-4485-b471-0c0a742773b2 (1).JPG" },
+  { name: "Dr. Isaac Oppong", specialty: "Dermatologist", img: "IMG_4018.JPG" },
+  { name: "Dr. Agnes Sarpomaa", specialty: "Pediatrician", img: "IMG_4019.JPG" },
+  { name: "Dr. Ameyaw Bismark", specialty: "General Physician", img: "IMG_4020.JPG" }
+];
+
+// --- Add this function right after the doctors array ---
+function renderAppointmentDoctors() {
+  const select = document.getElementById('appointmentDoctor');
+  select.innerHTML = '';
+  doctors.forEach(doc => {
+    const option = document.createElement('option');
+    option.value = doc.name;
+    option.textContent = `${doc.name} (${doc.specialty})`;
+    select.appendChild(option);
+  });
+}
+// ...existing code...
+
+// ...existing code...
+
+let appointments = loadData('appointments', []); // Use persistent storage
+
+function renderAppointments() {
+  const list = document.getElementById('appointmentList');
+  list.innerHTML = appointments.map((appt, i) =>
+    `<li>
+      <b>${appt.doctor}</b> - ${appt.date} at ${appt.time}
+      <button class="cancel-appt-btn" onclick="cancelAppointment(${i})">Cancel</button>
+    </li>`
+  ).join('');
+  saveData('appointments', appointments);
+}
+
+function cancelAppointment(idx) {
+  appointments.splice(idx, 1);
+  renderAppointments();
+}
+
+// --- Appointment Form Handler ---
+const appointmentForm = document.getElementById('appointmentForm');
+const appointmentMsg = document.getElementById('appointmentMsg');
+appointmentForm.onsubmit = function(e) {
+  e.preventDefault();
+  const doctor = document.getElementById('appointmentDoctor').value;
+  const date = document.getElementById('appointmentDate').value;
+  const time = document.getElementById('appointmentTime').value;
+  if (!doctor || !date || !time) {
+    appointmentMsg.textContent = "Please fill all fields.";
+    return;
+  }
+  appointments.push({ doctor, date, time });
+  saveData('appointments', appointments);
+  renderAppointments();
+  appointmentForm.reset();
+  appointmentMsg.innerHTML = `<span style="color:green;font-weight:bold;">Appointment booked successfully!</span>`;
+  setTimeout(() => { appointmentMsg.textContent = ""; }, 4000);
+};
+
+// ...existing code...
+// ...existing code...
+
+  // ...other sections...
+
+// ...existing code...
+// ...existing code...
+
+    let reminders = [];
+    let pharmacyStock = [
+      { name: "Paracetamol", price: 500, stock: 20 },
+      { name: "Ibuprofen", price: 700, stock: 15 },
+      { name: "Amoxicillin", price: 1200, stock: 10 },
+      { name: "Cough Syrup", price: 800, stock: 8 },
+      { name: "Vitamin C", price: 400, stock: 25 }
+    ];
+    let labBookings = [];
+    let billings = [];
+
+    
+
+    // --- UI Functions ---
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+      if (id === 'doctors') renderDoctors();
+      if (id === 'appointment') {
+        renderAppointmentDoctors();
+        renderAppointments && renderAppointments();
+      }
+      if (id === 'reminders') renderReminders();
+      if (id === 'consultation') {
+        scrollChatToBottom();
+        greetIfNeeded();
+      }
+      if (id === 'pharmacy') renderPharmacy();
+      if (id === 'lab') renderLab();
+      if (id === 'billing') renderBilling();
+    }
+
+    // --- Doctors ---
+    function renderDoctors() {
+      const list = document.getElementById('doctorList');
+      list.innerHTML = '';
+      doctors.forEach(doc => {
+        const card = document.createElement('div');
+        card.className = 'doctor-card';
+        card.innerHTML = `
+          <img src="${doc.img}" alt="${doc.name}">
+          <h4>${doc.name}</h4>
+          <p>${doc.specialty}</p>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    //...function showSection(id) {
+      //document.querySelectorAll('section').forEach(sec => sec.classList.add('hidden'));
+     // document.getElementById(id).classList.remove('hidden');
+     // if (id === 'doctors') renderDoctors();
+  //  }
+
+    function renderDoctors() {
+      const list = document.getElementById('doctorList');
+      list.innerHTML = '';
+      doctors.forEach(doc => {
+        const card = document.createElement('div');
+        card.className = 'doctor-card';
+        card.innerHTML = `
+          <img src="${doc.img}" alt="${doc.name}">
+          <h4>${doc.name}</h4>
+          <p>${doc.specialty}</p>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+
+    
+    // --- Consultation (AI Chat) ---
+    const chatBox = document.getElementById('chatBox');
+    const chatInput = document.getElementById('chatInput');
+    const chatSendBtn = document.getElementById('chatSendBtn');
+    function sendMessage() {
+      const msg = chatInput.value.trim();
+      if (!msg) return;
+      appendChat('user', msg);
+      chatInput.value = '';
+      chatInput.focus();
+      chatSendBtn.disabled = true;
+      showTypingIndicator();
+      setTimeout(() => {
+        const aiReply = aiConsult(msg);
+        removeTypingIndicator();
+        appendChat('ai', aiReply);
+        scrollChatToBottom();
+        chatSendBtn.disabled = false;
+      }, 900 + Math.random() * 600);
+    }
+    function appendChat(sender, text) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'chat-message ' + sender;
+      if (sender === 'ai') {
+        msgDiv.innerHTML = `
+          <div class="chat-bubble">${text}</div>
+          <img src="49ea808e-ce3e-4485-b471-0c0a742773b2 (1).JPG" alt="AI">
+        `;
+      } else {
+        msgDiv.innerHTML = `
+          <div class="chat-bubble">${text}</div>
+          <img src="IMG_4030.JPG" alt="You">
+        `;
+      }
+      chatBox.appendChild(msgDiv);
+      scrollChatToBottom();
+    }
+    function showTypingIndicator() {
+      removeTypingIndicator();
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'chat-message ai typing';
+      typingDiv.id = 'typingIndicator';
+      typingDiv.innerHTML = `
+        <div class="chat-bubble"><span class="typing-indicator">Doctor AI is typing...</span></div>
+        <img src="IMG_4021.JPG" alt="AI">
+      `;
+      chatBox.appendChild(typingDiv);
+      scrollChatToBottom();
+    }
+    function removeTypingIndicator() {
+      const typingDiv = document.getElementById('typingIndicator');
+      if (typingDiv) typingDiv.remove();
+    }
+    function scrollChatToBottom() {
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+    function aiConsult(msg) {
+      msg = msg.toLowerCase();
+      if (msg.includes('fever') || msg.includes('temperature')) {
+        return "You may have a fever. Possible causes: flu, infection. Recommended: Paracetamol, rest, and hydration. If persists, consult a doctor.";
+      }
+      if (msg.includes('headache')) {
+        return "Headaches can be caused by stress, dehydration, or migraine. Try Ibuprofen or Paracetamol. Drink water and rest.";
+      }
+      if (msg.includes('cough')) {
+        return "Cough may be due to cold, flu, or allergies. Try Cough Syrup and stay hydrated. If severe, consult a doctor.";
+      }
+      if (msg.includes('stomach') || msg.includes('pain')) {
+        return "Stomach pain can have many causes. Try antacids for indigestion. If pain is severe or persistent, see a doctor.";
+      }
+      if (msg.includes('rash')) {
+        return "Skin rash may be allergy or infection. Use antihistamines or topical creams. If spreading, consult a dermatologist.";
+      }
+      if (msg.includes('hello') || msg.includes('hi')) {
+        return "Hello! How can I assist you with your health today?";
+      }
+      if (msg.includes('thank')) {
+        return "You're welcome! If you have more questions, feel free to ask.";
+      }
+      return "Thank you for your message. A doctor will respond soon. For urgent issues, please visit a hospital.";
+    }
+    chatInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') sendMessage();
+    });
+    let chatStarted = false;
+    function greetIfNeeded() {
+      if (!chatStarted) {
+        appendChat('ai', "👋 Hello! I'm Doctor AI. How can I help you today?");
+        chatStarted = true;
+      }
+    }
+
+  
+
+
+    // --- Department Portal Data ---
+    const departmentDescriptions = {
+      "Cardiology": "Welcome to the Cardiology portal. Here you can get virtual advice about heart and blood vessel health.",
+      "Dermatology": "Welcome to the Dermatology portal. Get help for skin, hair, and nail issues.",
+      "Pediatrics": "Welcome to the Pediatrics portal. Ask about your child's health and wellness.",
+      "General Medicine": "Welcome to the General Medicine portal. Get advice on primary care and general health.",
+      "Orthopedics": "Welcome to the Orthopedics portal. Ask about bones, joints, and musculoskeletal issues.",
+      "Radiology": "Welcome to the Radiology portal. Learn about scans and imaging.",
+      "Emergency": "Welcome to the Emergency portal. For urgent care, please call emergency services.",
+      "Gynecology": "Welcome to the Gynecology portal. Get advice on women's health.",
+      "ENT": "Welcome to the ENT portal. Ask about ear, nose, and throat issues.",
+      "Neurology": "Welcome to the Neurology portal. Get help for brain and nerve problems.",
+      "Oncology": "Welcome to the Oncology portal. Get virtual support for cancer care.",
+      "Psychiatry": "Welcome to the Psychiatry portal. Ask about mental health and wellness."
+    };
+
+    // --- Department Portal Modal Logic ---
+    function openDeptPortal(dept) {
+      document.getElementById('deptPortalTitle').textContent = dept + " Portal";
+      document.getElementById('deptPortalDesc').textContent = departmentDescriptions[dept] || "";
+      document.getElementById('deptPortalModal').classList.remove('hidden');
+      deptChatHistory = [];
+      renderDeptChat();
+      deptGreetIfNeeded(dept);
+      document.body.style.overflow = "hidden";
+    }
+    function closeDeptPortal() {
+      document.getElementById('deptPortalModal').classList.add('hidden');
+      document.body.style.overflow = "";
+    }
+
+    // --- Department Portal Chat Logic ---
+    let deptChatHistory = [];
+    function renderDeptChat() {
+      const box = document.getElementById('deptChatBox');
+      box.innerHTML = '';
+      deptChatHistory.forEach(msg => {
+        const div = document.createElement('div');
+        div.className = 'chat-message ' + msg.sender;
+        div.innerHTML = `
+          <div class="chat-bubble">${msg.text}</div>
+          <img src="${msg.sender === 'ai' ? '49ea808e-ce3e-4485-b471-0c0a742773b2 (1).JPG' : 'IMG_4025.JPG'}" alt="${msg.sender}">
+        `;
+        box.appendChild(div);
+      });
+      box.scrollTop = box.scrollHeight;
+    }
+    function sendDeptMessage() {
+      const input = document.getElementById('deptChatInput');
+      const btn = document.getElementById('deptChatSendBtn');
+      const msg = input.value.trim();
+      if (!msg) return;
+      deptChatHistory.push({ sender: 'user', text: msg });
+      renderDeptChat();
+      input.value = '';
+      input.focus();
+      btn.disabled = true;
+      showDeptTypingIndicator();
+      setTimeout(() => {
+        const aiReply = aiDeptConsult(msg, document.getElementById('deptPortalTitle').textContent.split(" ")[0]);
+        removeDeptTypingIndicator();
+        deptChatHistory.push({ sender: 'ai', text: aiReply });
+        renderDeptChat();
+        btn.disabled = false;
+      }, 900 + Math.random() * 600);
+    }
+    function showDeptTypingIndicator() {
+      removeDeptTypingIndicator();
+      const box = document.getElementById('deptChatBox');
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'chat-message ai typing';
+      typingDiv.id = 'deptTypingIndicator';
+      typingDiv.innerHTML = `
+        <div class="chat-bubble"><span class="typing-indicator">Doctor AI is typing...</span></div>
+        <img src="IMG_4029.JPG" alt="AI">
+      `;
+      box.appendChild(typingDiv);
+      box.scrollTop = box.scrollHeight;
+    }
+    function removeDeptTypingIndicator() {
+      const typingDiv = document.getElementById('deptTypingIndicator');
+      if (typingDiv) typingDiv.remove();
+    }
+    function deptGreetIfNeeded(dept) {
+      if (deptChatHistory.length === 0) {
+        deptChatHistory.push({ sender: 'ai', text: `👋 Welcome to the ${dept} portal! How can I help you today?` });
+        renderDeptChat();
+      }
+    }
+    function aiDeptConsult(msg, dept) {
+      msg = msg.toLowerCase();
+      // Example: simple department-specific responses
+      if (dept === "Oncology") {
+        if (msg.includes("chemotherapy")) return "Chemotherapy is a common cancer treatment. Please consult your oncologist for a personalized plan.";
+        if (msg.includes("pain")) return "Pain management is important in oncology. Please describe your pain for advice.";
+        if (msg.includes("hello") || msg.includes("hi")) return "Hello! How can I assist you with your cancer care today?";
+        return "Thank you for your message. For urgent oncology issues, please visit the hospital.";
+      }
+      if (dept === "Cardiology") {
+        if (msg.includes("chest pain")) return "Chest pain can be serious. If severe, seek emergency care immediately.";
+        if (msg.includes("palpitation")) return "Palpitations may be due to stress or arrhythmia. Please monitor your symptoms.";
+        return "For heart-related advice, please describe your symptoms in detail.";
+      }
+      if (dept === "Dermatology") {
+        if (msg.includes("rash")) return "Skin rashes can be caused by allergies or infections. Please upload a photo for better advice.";
+        if (msg.includes("itch")) return "Itching may be due to dryness or allergy. Try moisturizing and avoid irritants.";
+        return "For skin issues, please describe your symptoms.";
+      }
+      if (msg.includes("hello") || msg.includes("hi")) return `Hello! How can I assist you in the ${dept} department?`;
+      if (msg.includes("thank")) return "You're welcome! If you have more questions, feel free to ask.";
+      return `Thank you for your message. A ${dept} specialist will respond soon. For urgent issues, please visit the hospital.`;
+    }
+    document.getElementById('deptChatInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') sendDeptMessage();
+    });
+
+    // --- Department Card Click Event ---
+    document.getElementById('departmentsList').addEventListener('click', function(e) {
+      let card = e.target.closest('.department-card');
+      if (card && card.dataset.dept) {
+        openDeptPortal(card.dataset.dept);
+      }
+    });
+
+
+
+   // ...existing code...
+// --- Telehealth Video (WebRTC Demo) ---
+let localStream = null;
+let peerConnection = null;
+const config = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
+
+async function startVideoCall() {
+  const localVideo = document.getElementById('localVideo');
+  const remoteVideo = document.getElementById('remoteVideo');
+  document.getElementById('videoStatus').textContent = "Starting local video...";
+  try {
+    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    localVideo.srcObject = localStream;
+
+    // Setup peer connection (loopback for demo)
+    peerConnection = new RTCPeerConnection(config);
+    localStream.getTracks().forEach(track => peerConnection.addTrack(track, localStream));
+    peerConnection.ontrack = (event) => {
+      remoteVideo.srcObject = event.streams[0];
+    };
+    // Loopback: connect to self
+    const offer = await peerConnection.createOffer();
+    await peerConnection.setLocalDescription(offer);
+    const answer = new RTCSessionDescription(offer);
+    await peerConnection.setRemoteDescription(answer);
+
+    document.getElementById('videoStatus').textContent = "Video call in progress (WebRTC demo).";
+  } catch (err) {
+    document.getElementById('videoStatus').textContent = "Could not access camera/mic.";
+  }
+}
+
+function endVideoCall() {
+  if (localStream) {
+    localStream.getTracks().forEach(track => track.stop());
+    localStream = null;
+  }
+  if (peerConnection) {
+    peerConnection.close();
+    peerConnection = null;
+  }
+  document.getElementById('localVideo').srcObject = null;
+  document.getElementById('remoteVideo').srcObject = null;
+  document.getElementById('videoStatus').textContent = "Call ended.";
+}
+// ...existing code...
+
+
+// --- Persistent Storage Helpers ---
+function saveData(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+function loadData(key, fallback) {
+  const val = localStorage.getItem(key);
+  return val ? JSON.parse(val) : fallback;
+}
+
+// --- Remote Monitoring ---
+let vitalReadings = loadData('vitalReadings', []);
+const vitalForm = document.getElementById('vitalForm');
+const vitalList = document.getElementById('vitalList');
+const vitalChartCtx = document.getElementById('vitalChart').getContext('2d');
+let vitalChart = new Chart(vitalChartCtx, {
+  type: 'line',
+  data: {
+    labels: [],
+    datasets: [
+      { label: 'Heart Rate', data: [], borderColor: '#1976d2', fill: false },
+      { label: 'BP', data: [], borderColor: '#e53935', fill: false },
+      { label: 'Temp', data: [], borderColor: '#43a047', fill: false }
+    ]
+  },
+  options: { responsive: false }
+});
+vitalForm.onsubmit = function(e) {
+  e.preventDefault();
+  const heart = +document.getElementById('vitalHeart').value;
+  const bp = +document.getElementById('vitalBP').value;
+  const temp = +document.getElementById('vitalTemp').value;
+  const time = new Date().toLocaleTimeString();
+  vitalReadings.push({ heart, bp, temp, time });
+  updateVitalUI();
+  vitalForm.reset();
+};
+function updateVitalUI() {
+  vitalList.innerHTML = vitalReadings.map(v =>
+    `<li>🕒 ${v.time} | ❤️ ${v.heart} bpm | BP ${v.bp} mmHg | 🌡️ ${v.temp}°C</li>`
+  ).join('');
+  vitalChart.data.labels = vitalReadings.map(v => v.time);
+  vitalChart.data.datasets[0].data = vitalReadings.map(v => v.heart);
+  vitalChart.data.datasets[1].data = vitalReadings.map(v => v.bp);
+  vitalChart.data.datasets[2].data = vitalReadings.map(v => v.temp);
+  vitalChart.update();
+  saveData('vitalReadings', vitalReadings);
+}
+
+// --- EHR ---
+let ehrRecords = loadData('ehrRecords', []);
+const ehrForm = document.getElementById('ehrForm');
+const ehrTableBody = document.querySelector('#ehrTable tbody');
+ehrForm.onsubmit = function(e) {
+  e.preventDefault();
+  const name = document.getElementById('ehrName').value;
+  const age = document.getElementById('ehrAge').value;
+  const diagnosis = document.getElementById('ehrDiagnosis').value;
+  const treatment = document.getElementById('ehrTreatment').value;
+  ehrRecords.push({ name, age, diagnosis, treatment });
+  updateEHRTable();
+  ehrForm.reset();
+};
+function updateEHRTable() {
+  ehrTableBody.innerHTML = ehrRecords.map((r, i) =>
+    `<tr>
+      <td>${r.name}</td>
+      <td>${r.age}</td>
+      <td>${r.diagnosis}</td>
+      <td>${r.treatment}</td>
+      <td><button onclick="deleteEHR(${i})" style="color:#e53935;">Delete</button></td>
+    </tr>`
+  ).join('');
+  saveData('ehrRecords', ehrRecords);
+}
+
+// --- Analytics ---
+
+window.addEventListener('DOMContentLoaded', () => {
+  updateVitalUI();
+  updateEHRTable();
+  updateAnalytics();
+});
+
+function updateAnalytics() {
+  document.getElementById('analyticsPatients').textContent = ehrRecords.length;
+  document.getElementById('analyticsAppointments').textContent = (window.appointments || []).length;
+  let avgHeart = '-';
+  if (vitalReadings.length) {
+    avgHeart = Math.round(vitalReadings.reduce((a, v) => a + v.heart, 0) / vitalReadings.length);
+  }
+  document.getElementById('analyticsHeart').textContent = avgHeart;
+  // Chart: Patients per diagnosis
+  const diagCounts = {};
+  ehrRecords.forEach(r => { diagCounts[r.diagnosis] = (diagCounts[r.diagnosis] || 0) + 1; });
+  const ctx = document.getElementById('analyticsChart').getContext('2d');
+  if (window.analyticsChart) window.analyticsChart.destroy();
+  window.analyticsChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: Object.keys(diagCounts),
+      datasets: [{
+        label: 'Patients per Diagnosis',
+        data: Object.values(diagCounts),
+        backgroundColor: '#1976d2'
+      }]
+    },
+    options: { responsive: false }
+  });
+}
+// Hook analytics update to EHR and vitals
+setInterval(updateAnalytics, 2000);
+
+// --- Patch showSection to support new sections ---
+const origShowSection = showSection;
+window.showSection = function(id) {
+  origShowSection(id);
+  if (id === 'telehealth') endVideoCall();
+  if (id === 'monitoring') updateVitalUI();
+  if (id === 'ehr') updateEHRTable();
+  if (id === 'analytics') updateAnalytics();
+};
+
+const loginTab = document.getElementById('loginTab');
+const signupTab = document.getElementById('signupTab');
+const loginForm = document.getElementById('loginForm');
+const signupForm = document.getElementById('signupForm');
+if (loginTab && signupTab && loginForm && signupForm) {
+  loginTab.onclick = () => {
+    loginTab.classList.add('active');
+    signupTab.classList.remove('active');
+    loginForm.classList.add('active');
+    signupForm.classList.remove('active');
+  };
+  signupTab.onclick = () => {
+    signupTab.classList.add('active');
+    loginTab.classList.remove('active');
+    signupForm.classList.add('active');
+    loginForm.classList.remove('active');
+  };
+}
+
+    // --- Init ---
+    showSection('doctors');
+  </script>
+</body>
+</html>
